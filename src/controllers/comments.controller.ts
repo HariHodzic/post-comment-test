@@ -1,9 +1,11 @@
-import { Body, Controller, Delete, Get, Param, Post, UsePipes, ValidationPipe} from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, UseGuards, UsePipes, ValidationPipe} from '@nestjs/common';
+import { AuthGuard } from '@nestjs/passport';
 import { CreateCommentDto } from 'src/dto/comments/create-comment.dto';
 import { Comment } from 'src/entities/comment.entity';
 import { CommentsService } from 'src/services/comments.service';
 
 @Controller('comments')
+@UseGuards(AuthGuard())
 export class CommentsController {
     constructor(private commentsService: CommentsService){}
     

@@ -1,6 +1,10 @@
+import { IsDate } from "class-validator";
 import { Timestamp } from "typeorm";
 
 export class CreateCommentDto{
+
     content: string;
-    dateTime: string =  new Date().toDateString();
+
+    @IsDate()
+    dateTime: Date = new Date;
 }

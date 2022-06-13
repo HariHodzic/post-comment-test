@@ -10,5 +10,5 @@ export class Comment{
     content: string;
 
     @Column()
-    dateTime: string;
+    dateTime: Date;
 }
