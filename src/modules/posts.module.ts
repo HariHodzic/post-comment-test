@@ -9,8 +9,12 @@ import { PostsService } from 'src/services/posts.service';
 import { AuthModule } from './auth.module';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([Post]), TypeOrmModule.forFeature([Comment]), AuthModule],
-    controllers: [PostsController, CommentsController],
-    providers: [PostsService, CommentsService]
+  imports: [
+    TypeOrmModule.forFeature([Post]),
+    TypeOrmModule.forFeature([Comment]),
+    AuthModule,
+  ],
+  controllers: [PostsController, CommentsController],
+  providers: [PostsService, CommentsService],
 })
 export class PostsModule {}

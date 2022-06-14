@@ -9,14 +9,14 @@ import { AuthService } from '../services/auth.service';
 
 @Module({
   imports: [
-    PassportModule.register({defaultStrategy: 'jwt'}),
+    PassportModule.register({ defaultStrategy: 'jwt' }),
     JwtModule.register({
       secret: 'secret123',
-      signOptions:{
-        expiresIn:3600
+      signOptions: {
+        expiresIn: 3600,
       },
     }),
-    TypeOrmModule.forFeature([User])
+    TypeOrmModule.forFeature([User]),
   ],
   controllers: [AuthController],
   providers: [AuthService, JwtStrategy],

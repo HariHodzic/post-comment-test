@@ -1,4 +1,4 @@
-export class SearchPostDto{
-    search: string;
-    author: string; 
+export class SearchPostDto {
+  search: string;
+  author: string;
 }

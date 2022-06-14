@@ -1,10 +1,10 @@
-import { IsDate } from "class-validator";
+import { IsDate } from 'class-validator';
 
-export class CreatePostDto{
-    title: string;
+export class CreatePostDto {
+  title: string;
 
-    description: string;
+  description: string;
 
-    @IsDate()
-    dateTime: Date = new Date;
+  @IsDate()
+  dateTime: Date = new Date();
 }
