@@ -1,7 +1,7 @@
-import { IsDate } from 'class-validator';
-import { Post } from 'src/entities/post.entity';
+import { IsDate, IsNotEmpty } from 'class-validator';
 
 export class CreateCommentDto {
+  @IsNotEmpty()
   content: string;
 
   @IsDate()

@@ -5,12 +5,11 @@ import {
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
-  Timestamp,
 } from 'typeorm';
 import { Comment } from './comment.entity';
 import { User } from './user.entity';
 
-@Entity()
+@Entity({ orderBy: { dateTime: 'DESC' } })
 export class Post {
   @PrimaryGeneratedColumn()
   id: string;
@@ -28,7 +27,6 @@ export class Post {
   dateTime: Date;
 
   @ManyToOne((type) => User, (user) => user.posts, { eager: true })
-  @Exclude({ toClassOnly: true })
   author: User;
 
   @OneToMany((type) => Comment, (comments) => comments.post, { eager: true })

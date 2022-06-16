@@ -22,13 +22,19 @@ import { Post as PostEntity } from '../entities/post.entity';
 export class PostsController {
   constructor(private postsService: PostsService) {}
 
+  @Get('/myposts')
+  @UseGuards(AuthGuard())
+  getUsersPosts(@GetUser() author: User): Promise<PostEntity[]> {
+    return this.postsService.getUsersPosts(author);
+  }
+
   @Get('/:id')
   getPostById(@Param('id') id: string): Promise<PostEntity> {
     return this.postsService.getPostById(id);
   }
 
   @Get()
-  getAllTasks(): Promise<PostEntity[]> {
+  getAllPosts(): Promise<PostEntity[]> {
     return this.postsService.getAllPosts();
   }
 

@@ -1,4 +1,6 @@
 import {
+  BadRequestException,
+  HttpException,
   Injectable,
   InternalServerErrorException,
   NotFoundException,
@@ -34,6 +36,15 @@ export class PostsService {
     }
   }
 
+  getUsersPosts(author: User): Promise<Post[]> {
+    try {
+      const result = this.postRepository.find({ where: { author: author } });
+      return result;
+    } catch (error) {
+      throw new InternalServerErrorException();
+    }
+  }
+
   async createPost(createPostDto: CreatePostDto, author: User): Promise<Post> {
     const { title, description, dateTime } = createPostDto;
     const post = this.postRepository.create({
@@ -47,6 +58,15 @@ export class PostsService {
   }
 
   async deletePost(id: string): Promise<void> {
+    const post = await this.postRepository.findOne({ where: { id: id } });
+    if (!post) {
+      throw new NotFoundException(`Post with ID "${id}" not found`);
+    }
+    if (post.comments.length > 0) {
+      throw new BadRequestException(
+        'You can not delete post that has comments!',
+      );
+    }
     const result = await this.postRepository.delete(id);
 
     if (result.affected === 0) {
