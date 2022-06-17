@@ -83,6 +83,7 @@ export class PostsService {
 
     result.title = updatePostDto.title;
     result.description = updatePostDto.description;
+    result.dateTime = new Date();
     result.edited = updatePostDto.edited;
     await this.postRepository.save(result);
     return result;

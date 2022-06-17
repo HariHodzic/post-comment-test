@@ -6,6 +6,7 @@ import {
   Param,
   Patch,
   Post,
+  Put,
   UseGuards,
   UsePipes,
   ValidationPipe,
@@ -54,7 +55,7 @@ export class PostsController {
     return this.postsService.deletePost(id);
   }
 
-  @Patch('/:id')
+  @Put('/:id')
   @UseGuards(AuthGuard())
   @UsePipes(new ValidationPipe({ transform: true }))
   updatePost(
