@@ -68,6 +68,7 @@ export class CommentsService {
   async getCommentByIdAndDoStuff(id: string): Promise<Comment> {
     const result = await this.commentsRepository.findOne({ where: { id: id } });
     result.content = result.content + 'stuff';
+    // Added new comment just to trigger review
     result.post = null;
     if (!result) {
       throw new NotFoundException(`Comment with ID "${id}" not found`);
