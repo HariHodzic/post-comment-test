@@ -69,6 +69,7 @@ export class CommentsService {
     const result = await this.commentsRepository.findOne({ where: { id: id } });
     result.content = result.content + 'stuff';
     // Added new comment just to trigger review
+    // New comment
     result.post = null;
     if (!result) {
       throw new NotFoundException(`Comment with ID "${id}" not found`);
